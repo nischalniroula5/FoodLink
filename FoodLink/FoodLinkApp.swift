@@ -11,7 +11,7 @@ import SwiftUI
 struct FoodLinkApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LoginView()
         }
     }
 }
