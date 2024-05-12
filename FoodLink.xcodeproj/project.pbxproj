@@ -16,6 +16,8 @@
 		37DCF1AA2BEF9B1600A999BB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCF1A92BEF9B1600A999BB /* HomeView.swift */; };
 		37DCF1AC2BEF9B2100A999BB /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCF1AB2BEF9B2100A999BB /* HistoryView.swift */; };
 		37DCF1AE2BEF9B2F00A999BB /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCF1AD2BEF9B2F00A999BB /* ProfileView.swift */; };
+		37DCF1B02BF088C500A999BB /* IHaveFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCF1AF2BF088C500A999BB /* IHaveFoodView.swift */; };
+		37DCF1B22BF089BA00A999BB /* INeedFoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCF1B12BF089BA00A999BB /* INeedFoodView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		37DCF1A92BEF9B1600A999BB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		37DCF1AB2BEF9B2100A999BB /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		37DCF1AD2BEF9B2F00A999BB /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		37DCF1AF2BF088C500A999BB /* IHaveFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IHaveFoodView.swift; sourceTree = "<group>"; };
+		37DCF1B12BF089BA00A999BB /* INeedFoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INeedFoodView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,9 +69,11 @@
 				37555DA82BEF823200DDBC74 /* LoginView.swift */,
 				37DCF1A72BEF998200A999BB /* MainView.swift */,
 				37DCF1A92BEF9B1600A999BB /* HomeView.swift */,
+				37DCF1B12BF089BA00A999BB /* INeedFoodView.swift */,
 				37DCF1AB2BEF9B2100A999BB /* HistoryView.swift */,
 				37DCF1AD2BEF9B2F00A999BB /* ProfileView.swift */,
 				37555D9C2BEF81F200DDBC74 /* ContentView.swift */,
+				37DCF1AF2BF088C500A999BB /* IHaveFoodView.swift */,
 				37555D9E2BEF81F500DDBC74 /* Assets.xcassets */,
 				37555DA02BEF81F500DDBC74 /* Preview Content */,
 			);
@@ -158,6 +164,8 @@
 				37555D9D2BEF81F200DDBC74 /* ContentView.swift in Sources */,
 				37DCF1AA2BEF9B1600A999BB /* HomeView.swift in Sources */,
 				37DCF1AE2BEF9B2F00A999BB /* ProfileView.swift in Sources */,
+				37DCF1B02BF088C500A999BB /* IHaveFoodView.swift in Sources */,
+				37DCF1B22BF089BA00A999BB /* INeedFoodView.swift in Sources */,
 				37555D9B2BEF81F200DDBC74 /* FoodLinkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
