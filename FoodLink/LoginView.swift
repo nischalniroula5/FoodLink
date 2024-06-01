@@ -1,11 +1,7 @@
-//
-//  LoginView.swift
-//  FoodLink
-//
-//  Created by Nischal Niroula on 11/5/2024.
-//
-
 import SwiftUI
+import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
 
 struct LoginView: View {
     var primaryGreen = Color(red: 117 / 255.0, green: 185 / 255.0, blue: 110 / 255.0)
@@ -33,40 +29,16 @@ struct LoginView: View {
                             .fontWeight(.bold)
                             .foregroundColor(primaryGreen)
                             .multilineTextAlignment(.leading)
-                        .padding(.horizontal)
+                            .padding(.horizontal)
                         
                         Spacer()
                     }
 
                     Spacer()
-                    
-                    Button(action: {
-                        self.showingHomeScreen = true
-                    }) {
-                        HStack {
-                            Text("Sign In With Apple")
-                                .fontWeight(.semibold)
-                                .padding(.leading, 20)
-                                .font(.system(size: 24))
-                            Spacer()
-                            Image(systemName: "applelogo")
-                                .padding(.trailing, 20)
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50)
-                        .padding(.vertical, 10)
-                        .foregroundColor(primaryDarkBlue)
-                        .background(primaryOrange)
-                        .cornerRadius(7)
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom, 20)
 
                     // Sign in with Google
-                    Button(action: {
-                        self.showingHomeScreen = true
-                    }) {
+                    Button(action: signInWithGoogle) {
                         HStack {
-                            
                             Text("Sign In With Google")
                                 .fontWeight(.semibold)
                                 .padding(.leading, 20)
@@ -92,15 +64,60 @@ struct LoginView: View {
             }
         }
     }
+
+    private func signInWithGoogle() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        
+        GIDSignIn.sharedInstance.configuration = config
+        
+        let presentingViewController = self.getRootViewController()
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: presentingViewController) { signInResult, error in
+            if let error = error {
+                print("Error signing in with Google: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let user = signInResult?.user,
+                  let idToken = user.idToken else { return }
+            
+            let accessToken = user.accessToken
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken.tokenString, accessToken: accessToken.tokenString)
+            
+            // Use the credential to authenticate with Firebase
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    print("Firebase sign in error: \(error.localizedDescription)")
+                    return
+                }
+                
+                // User is signed in to Firebase with Google.
+                print("User signed in with Google: \(authResult?.user.uid ?? "")")
+                self.showingHomeScreen = true
+            }
+        }
+    }
+}
+
+extension View {
+    func getRootViewController() -> UIViewController {
+        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            return UIViewController()
+        }
+
+        guard let root = screen.windows.first?.rootViewController else {
+            return UIViewController()
+        }
+
+        return root
+    }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
     }
-}
-
-
-#Preview {
-    LoginView()
 }
